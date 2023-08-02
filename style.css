@@ -5,39 +5,68 @@ body{
 
 }
 .calculator {
-    width: 300px;
+
+    width: 250px;
+    height: 350px;
     margin: auto;
-    padding: 20px;
-    background-color: #222;
-    border-radius: 10px;
+    /* padding: 20px; */
+    background-color: #474343;
+    border-radius: 15px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     color: #fff;
+    overflow: hidden;
 }
 
 .screen {
-    background-color: #333;
+    height: 20%;
+     background-color: #474343;
     border-radius: 5px;
-    padding: 10px;
-    font-size: 24px;
+    padding: 0 5px;
+    font-size: 4rem;
     text-align: right;
-    margin-bottom: 10px;
+    /* margin-bottom: 5px; */
+}
+.dots-container {
+    float: left;
+    display: flex;
+    align-items: center;
+    margin-top: 0.5rem;
 }
 
-/* .cal-body {
-   
-} */
+.dot {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    margin-right: 5px;
+    display: inline-block; /* Ensure spans are inline elements */
+}
+
+.red {
+    background-color: red;
+}
+
+.yellow {
+    background-color: yellow;
+}
+
+.green {
+    background-color: green;
+}
+
+.cal-body {
+
+ height: 80%;  
+}
 
 .row {
+    height: 20%;
     display: flex;
 }
-
 .key {
     flex: 1;
-    background-color: #555;
-    margin: 3px;
+    background-color: #807C7B;
+    margin: 1px;
     border: none;
-    border-radius: 5px;
-    padding: 15px;
     font-size: 20px;
     color: #fff;
     cursor: pointer;
@@ -46,4 +75,16 @@ body{
 
 .key:hover {
     background-color: #444;
+}
+.operator{
+    background-color: #FE9505;
+
+}
+.operator2{
+    background-color: #565150;
+}
+
+.key.double {
+    flex: 2; 
+    padding: 0 13px;
 }
