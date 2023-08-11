@@ -29,7 +29,7 @@ function calculate() {
     case '/':
       result /= parseFloat(currentValue);
       break;
-      case '%': // Percentage calculation
+      case '%': 
       result = (result * parseFloat(currentValue)) / 100;
       break;
     default:
