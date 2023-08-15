@@ -7,12 +7,20 @@ function inputNum(value) {
   document.getElementById('output').textContent = currentValue;
 }
 
+let operatorButtons = document.getElementsByClassName('operator');
 function inputOperator(oper) {
   if (currentValue !== '') {
     calculate();
     currentOperator = oper;
+    
+    for (let i = 0; i < operatorButtons.length; i++) {
+      if (operatorButtons[i].textContent === currentOperator ) {
+        operatorButtons[i].style.backgroundColor = "rgb(193 112 0)";
+      }
+    }
   }
 }
+
 
 function calculate() {
   if (currentValue === '') return;
@@ -20,13 +28,13 @@ function calculate() {
     case '+':
       result += parseFloat(currentValue);
       break;
-    case '-':
+    case '‒':
       result -= parseFloat(currentValue);
       break;
-    case '*':
+    case '×':
       result *= parseFloat(currentValue);
       break;
-    case '/':
+    case '÷':
       result /= parseFloat(currentValue);
       break;
       case '%': 
@@ -43,6 +51,10 @@ function reset() {
   currentValue = '';
   currentOperator = '';
   result = 0;
+  Array.from(operatorButtons).forEach(button => {
+    button.style.backgroundColor = '';
+});
+
   document.getElementById('output').textContent = result;
 }
 
