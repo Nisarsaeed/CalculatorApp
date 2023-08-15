@@ -1,9 +1,10 @@
 let currentValue = '';
 let currentOperator = '';
 let result = 0;
+let displayScreen = document.getElementById('output');
 function inputNum(value) {
   currentValue += value;
-  document.getElementById('output').textContent = currentValue;
+  displayScreen.textContent = currentValue;
 }
 let operatorButtons = document.getElementsByClassName('operator');
 function inputOperator(oper) {
@@ -39,7 +40,7 @@ function calculate() {
       result = parseFloat(currentValue);
   }
   currentValue = '';
-  document.getElementById('output').textContent = result;
+  displayScreen.textContent = result;
 }
 function reset() {
   currentValue = '';
@@ -48,11 +49,11 @@ function reset() {
   Array.from(operatorButtons).forEach(button => {
     button.style.backgroundColor = '';
 });
-  document.getElementById('output').textContent = result;
+  displayScreen.textContent = result;
 }
 function toggleNegate() {
     if (currentValue !== '') {
         currentValue = (-parseFloat(currentValue)).toString();
-        document.getElementById('output').textContent = currentValue;
+        displayScreen.textContent = currentValue;
     }
 }
