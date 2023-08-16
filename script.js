@@ -2,7 +2,7 @@ let currentValue = '';
 let currentOperator = '';
 let result = 0;
 let displayScreen = document.getElementById('output');
-
+let operatorButtons = document.getElementsByClassName('operator');
 document.querySelector('.cal-body').addEventListener('click', function(event){
   if(event.target.matches('.key')){
     let buttonValue = event.target.textContent;
@@ -27,7 +27,6 @@ function numericKeyClicked(number) {
   currentValue += number;
   displayScreen.textContent = currentValue;
 }
-let operatorButtons = document.getElementsByClassName('operator');
 function operatorClicked(operator) {
   if (currentValue !== '') {
     result = parseFloat(currentValue);
@@ -76,7 +75,7 @@ function resetValues() {
 }
 function toggleNegate() {
     if (currentValue !== '') {
-        currentValue = (-parseFloat(currentValue)).toString();
+        currentValue = -(currentValue);
         displayScreen.textContent = currentValue;
     }
 }
