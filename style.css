@@ -1,10 +1,7 @@
 body{
     display: flex;
-  
     height: 100vh;
-
 }
-
 .calculator {
     border: 2px solid rgb(32, 31, 31);
     width: 250px;
@@ -16,7 +13,6 @@ body{
     color: #fff;
     overflow: hidden;
 }
-
 .screen {
     height: 25%;
     background-color: #474343;
@@ -30,7 +26,6 @@ body{
     align-items: center;
     margin-top: 0.5rem;
 }
-
 .dot {
     width: 15px;
     height: 15px;
@@ -38,27 +33,22 @@ body{
     margin-right: 5px;
     display: inline-block; 
 }
-
 .red {
     background-color: red;
 }
-
 .yellow {
     background-color: yellow;
 }
-
 .green {
     background-color: green;
 }
 .value{
     margin-top: 1rem;
 }
-
 .cal-body {
 
  height: 75%;  
 }
-
 .row {
     height: 20%;
     display: flex;
@@ -73,19 +63,19 @@ body{
     cursor: pointer;
     transition: background-color 0.3s;
 }
-
 .key:hover {
     background-color: #444;
 }
 .operator{
     background-color: #FE9505;
-
 }
 .operator2{
     background-color: #565150;
 }
-
 .key.double {
     flex: 2; 
     padding: 0 13px;
+}
+.active-operator{
+    background-color: rgb(193 112 0);
 }
