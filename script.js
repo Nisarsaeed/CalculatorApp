@@ -9,7 +9,8 @@ function inputNum(value) {
 let operatorButtons = document.getElementsByClassName('operator');
 function inputOperator(oper) {
   if (currentValue !== '') {
-    calculate();
+    result = parseFloat(currentValue);
+    currentValue = '';
     currentOperator = oper;   
     for (let i = 0; i < operatorButtons.length; i++) {
       if (operatorButtons[i].textContent === currentOperator ) {
@@ -20,24 +21,25 @@ function inputOperator(oper) {
 }
 function calculate() {
   if (currentValue === '') return;
+  currentValue = parseFloat(currentValue);
   switch (currentOperator) {
     case '+':
-      result += parseFloat(currentValue);
+      result += currentValue;
       break;
     case '‒':
-      result -= parseFloat(currentValue);
+      result -= currentValue;
       break;
     case '×':
-      result *= parseFloat(currentValue);
+      result *= currentValue;
       break;
     case '÷':
-      result /= parseFloat(currentValue);
+      result /= currentValue;
       break;
       case '%': 
-      result = (result * parseFloat(currentValue)) / 100;
+      result = (result * currentValue) / 100;
       break;
     default:
-      result = parseFloat(currentValue);
+      console.log('No operator Clicked');
   }
   currentValue = '';
   displayScreen.textContent = result;
