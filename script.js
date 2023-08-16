@@ -2,19 +2,40 @@ let currentValue = '';
 let currentOperator = '';
 let result = 0;
 let displayScreen = document.getElementById('output');
-function inputNum(value) {
-  currentValue += value;
+
+document.querySelector('.cal-body').addEventListener('click', function(event){
+  if(event.target.matches('.key')){
+    let buttonValue = event.target.textContent;
+    if(buttonValue==='+'||buttonValue==='‒'||buttonValue==='×'||buttonValue==='÷'||buttonValue==='%'){
+      operatorClicked(buttonValue);
+    }
+    else if(buttonValue === '='){
+      calculate();
+    }
+    else if(buttonValue === 'AC'){
+      resetValues();
+    }
+    else if(buttonValue ==='+/-'){
+      toggleNegate();
+    }
+    else{
+      numericKeyClicked(buttonValue);
+    }
+  }
+} );
+function numericKeyClicked(number) {
+  currentValue += number;
   displayScreen.textContent = currentValue;
 }
 let operatorButtons = document.getElementsByClassName('operator');
-function inputOperator(oper) {
+function operatorClicked(operator) {
   if (currentValue !== '') {
     result = parseFloat(currentValue);
     currentValue = '';
-    currentOperator = oper;   
+    currentOperator = operator;   
     for (let i = 0; i < operatorButtons.length; i++) {
       if (operatorButtons[i].textContent === currentOperator ) {
-        operatorButtons[i].style.backgroundColor = "rgb(193 112 0)";
+        operatorButtons[i].classList.add('active-operator');
       }
     }
   }
@@ -44,13 +65,13 @@ function calculate() {
   currentValue = '';
   displayScreen.textContent = result;
 }
-function reset() {
+function resetValues() {
   currentValue = '';
   currentOperator = '';
   result = 0;
-  Array.from(operatorButtons).forEach(button => {
-    button.style.backgroundColor = '';
-});
+  for (let i = 0; i < operatorButtons.length; i++) { 
+      operatorButtons[i].classList.remove('active-operator');
+  }
   displayScreen.textContent = result;
 }
 function toggleNegate() {
