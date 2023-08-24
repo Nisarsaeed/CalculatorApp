@@ -1,8 +1,8 @@
 let currentValue = '';
 let currentOperator = '';
 let result = 0;
-let displayScreen = document.getElementById('output');
-let operatorButtons = document.getElementsByClassName('operator');
+const displayScreen = document.getElementById('output');
+const operatorButtons = document.getElementsByClassName('yellow-box');
 document.querySelector('.cal-body').addEventListener('click', function(event){
   if(event.target.matches('.key')){
     let buttonValue = event.target.textContent;

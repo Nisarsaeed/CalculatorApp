@@ -66,10 +66,10 @@ body{
 .key:hover {
     background-color: #444;
 }
-.operator{
+.yellow-box{
     background-color: #FE9505;
 }
-.operator2{
+.dark-grey-box{
     background-color: #565150;
 }
 .key.double {
