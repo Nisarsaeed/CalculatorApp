@@ -3,6 +3,7 @@ let currentOperator = '';
 let result = 0;
 const displayScreen = document.getElementById('output');
 const operatorButtons = document.getElementsByClassName('yellow-box');
+const operatorButtonsArray = Array.from(operatorButtons);
 document.querySelector('.cal-body').addEventListener('click', function(event){
   if(event.target.matches('.key')){
     let buttonValue = event.target.textContent;
@@ -32,11 +33,11 @@ function operatorClicked(operator) {
     result = parseFloat(currentValue);
     currentValue = '';
     currentOperator = operator;   
-    for (let i = 0; i < operatorButtons.length; i++) {
-      if (operatorButtons[i].textContent === currentOperator ) {
-        operatorButtons[i].classList.add('active-operator');
+    const activeOperatorButton = operatorButtonsArray.find(button => button.textContent === currentOperator);
+      if (activeOperatorButton) {
+        activeOperatorButton.classList.add('active-operator');
       }
-    }
+    
   }
 }
 function calculate() {
@@ -68,9 +69,10 @@ function resetValues() {
   currentValue = '';
   currentOperator = '';
   result = 0;
-  for (let i = 0; i < operatorButtons.length; i++) { 
-      operatorButtons[i].classList.remove('active-operator');
-  }
+ operatorButtonsArray.forEach(button =>{
+   button.classList.remove('active-operator');
+ })
+  
   displayScreen.textContent = result;
 }
 function toggleNegate() {
