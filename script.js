@@ -4,23 +4,29 @@ let result = 0;
 let displayScreen = document.getElementById('output');
 let operatorButtons = document.getElementsByClassName('operator');
 document.querySelector('.cal-body').addEventListener('click', function(event){
-  if(event.target.matches('.key')){
-    let buttonValue = event.target.textContent;
-    if(buttonValue==='+'||buttonValue==='‒'||buttonValue==='×'||buttonValue==='÷'||buttonValue==='%'){
+   const buttonValue = event.target.textContent;
+
+  switch (buttonValue) {
+    case '+':
+    case '−':
+    case '×':
+    case '÷':
+    case '%':
       operatorClicked(buttonValue);
-    }
-    else if(buttonValue === '='){
+      break;
+    case '=':
       calculate();
-    }
-    else if(buttonValue === 'AC'){
+      break;
+    case 'AC':
       resetValues();
-    }
-    else if(buttonValue ==='+/-'){
+      break;
+    case '+/-':
       toggleNegate();
-    }
-    else{
-      numericKeyClicked(buttonValue);
-    }
+      break;
+    default:
+      if (/^[0-9]$/.test(buttonValue)) {
+        numericKeyClicked(buttonValue);
+      }
   }
 } );
 function numericKeyClicked(number) {
