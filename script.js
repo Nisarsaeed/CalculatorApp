@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         switch (buttonValue) {
           case '+':
-          case '−':
+          case '‒':
           case '×':
           case '÷':
           case '%':
