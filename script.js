@@ -1,66 +1,103 @@
-let currentValue = '';
-let currentOperator = '';
-let result = 0;
+document.addEventListener('DOMContentLoaded', function () {
+  (() => {
+    let currentValue = '';
+    let currentOperator = '';
+    let result = 0;
+    const displayScreen = document.getElementById('output');
+    const operatorButtons = document.getElementsByClassName('yellow-box');
+    const operatorButtonsArray = Array.from(operatorButtons);
+    document.querySelector('.cal-body').addEventListener('click', function (event) {
+      if (event.target.matches('.key')) {
+        const buttonValue = event.target.textContent;
 
-function inputNum(value) {
-  currentValue += value;
-  document.getElementById('output').textContent = currentValue;
-}
+        switch (buttonValue) {
+          case '+':
+          case '‒':
+          case '×':
+          case '÷':
+          case '%':
+            operatorClicked(buttonValue);
+            break;
+          case '=':
+            calculate();
+            break;
+          case 'AC':
+            resetValues();
+            break;
+          case '+/-':
+            toggleNegate();
+            break;
+          default:
+            if (/^[0-9]+$/.test(buttonValue)) {
+              numericKeyClicked(buttonValue);
+            }
+        }
+      }
+    });
 
-let operatorButtons = document.getElementsByClassName('operator');
-function inputOperator(oper) {
-  if (currentValue !== '') {
-    calculate();
-    currentOperator = oper;
-    
-    for (let i = 0; i < operatorButtons.length; i++) {
-      if (operatorButtons[i].textContent === currentOperator ) {
-        operatorButtons[i].style.backgroundColor = "rgb(193 112 0)";
+    function numericKeyClicked(number) {
+      currentValue += number;
+      displayScreen.textContent = currentValue;
+    }
+
+    function operatorClicked(operator) {
+      if (currentValue !== '') {
+        result = parseFloat(currentValue);
+        currentValue = '';
+        currentOperator = operator;
+        const activeOperatorButton = operatorButtonsArray.find(button => button.textContent === currentOperator);
+
+      if (activeOperatorButton) {
+          activeOperatorButton.classList.add('active-operator');
+        }
+
       }
     }
-  }
-}
 
-
-function calculate() {
-  if (currentValue === '') return;
-  switch (currentOperator) {
-    case '+':
-      result += parseFloat(currentValue);
-      break;
-    case '‒':
-      result -= parseFloat(currentValue);
-      break;
-    case '×':
-      result *= parseFloat(currentValue);
-      break;
-    case '÷':
-      result /= parseFloat(currentValue);
-      break;
-      case '%': 
-      result = (result * parseFloat(currentValue)) / 100;
-      break;
-    default:
-      result = parseFloat(currentValue);
-  }
-  currentValue = '';
-  document.getElementById('output').textContent = result;
-}
-
-function reset() {
-  currentValue = '';
-  currentOperator = '';
-  result = 0;
-  Array.from(operatorButtons).forEach(button => {
-    button.style.backgroundColor = '';
-});
-
-  document.getElementById('output').textContent = result;
-}
-
-function toggleNegate() {
-    if (currentValue !== '') {
-        currentValue = (-parseFloat(currentValue)).toString();
-        document.getElementById('output').textContent = currentValue;
+    function calculate() {
+      if (currentValue === '') return;
+      currentValue = parseFloat(currentValue);
+      
+      switch (currentOperator) {
+        case '+':
+          result += currentValue;
+          break;
+        case '‒':
+          result -= currentValue;
+          break;
+        case '×':
+          result *= currentValue;
+          break;
+        case '÷':
+          result /= currentValue;
+          break;
+        case '%':
+          result = (result * currentValue) / 100;
+          break;
+        default:
+          console.log('No operator Clicked');
+      }
+      currentValue = '';
+      displayScreen.textContent = result;
     }
-}
+
+    function resetValues() {
+      currentValue = '';
+      currentOperator = '';
+      result = 0;
+      operatorButtonsArray.forEach(button => {
+        button.classList.remove('active-operator');
+      })
+
+      displayScreen.textContent = result;
+    }
+
+    function toggleNegate() {
+      if (currentValue !== '') {
+        currentValue = -(currentValue);
+        displayScreen.textContent = currentValue;
+      }
+    }
+
+  })();
+});
